@@ -29,11 +29,13 @@ jobs:
 
       - name: Build app for macOS
         run: npm run build:mac
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Upload macOS build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: AmDital-macOS
           path: |
             dist/*.dmg
-            dist/*.zip
+            dist/*.zip 
