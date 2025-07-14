@@ -37,7 +37,8 @@
     "npmRebuild": false,
     "nodeGypRebuild": false,
     "mac": {
-      "target": "dmg"
+      "target": "dmg",
+      "icon": "icon/amdital-favicon.icns"
     },
     "win": {
       "target": {
