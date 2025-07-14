@@ -1,0 +1,55 @@
+{
+  "name": "AmDital",
+  "version": "1.0.0",
+  "description": "Desktop app for Amdital",
+  "author": "Ganesh Yevle",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "compress:7z": "cd dist && \"C:\\Program Files\\7-Zip\\7z.exe\" a -t7z -mx=9 AmDital-bundle.7z win-unpacked/AmDital.exe win-unpacked/resources win-unpacked/*.dll win-unpacked/*.pak win-unpacked/locales \"AmDital Setup 1.0.0.exe\"",
+    "compress:setup": "\"C:\\Program Files\\7-Zip\\7z.exe\" a -t7z -mx=9 AmDital-setup.7z \"dist/AmDital Setup 1.0.0.exe\"",
+    "compress:portable": "cd dist/win-unpacked && \"C:\\Program Files\\7-Zip\\7z.exe\" a -t7z -mx=9 ../../AmDital-portable.7z AmDital.exe resources *.dll *.pak locales",
+    "upx:compress": "cd dist/win-unpacked && C:\\Users\\Admin\\Downloads\\upx-5.0.1-win64\\upx-5.0.1-win64\\upx.exe --best --lzma --force AmDital.exe *.dll"
+  },
+  "build": {
+    "asar": true,
+    "appId": "com.amDital.www",
+    "productName": "AmDital",
+    "icon": "icon/amdital-favicon.ico",
+    "files": [
+      "main.js",
+      "preload.js",
+      "icon/amdital-favicon.ico",
+      "package.json",
+      "!**/node_modules/**/*.md",
+      "!**/node_modules/**/*.map",
+      "!**/node_modules/**/test/**",
+      "!**/node_modules/**/example/**",
+      "!**/node_modules/**/docs/**",
+      "!**/.*",
+      "!**/*.log",
+      "!**/.vite/**",
+      "!index.html",
+      "!logo.svg"
+    ],
+    "npmRebuild": false,
+    "nodeGypRebuild": false,
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": {
+        "target": "nsis",
+        "arch": ["x64"]
+      },
+      "compression": "maximum"
+    },
+    "afterPack": "./scripts/remove-locales.js"
+  },
+  "devDependencies": {
+    "electron": "29.4.0",
+    "electron-builder": "^26.0.12"
+  }
+}
