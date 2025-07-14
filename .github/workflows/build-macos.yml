@@ -38,4 +38,4 @@ jobs:
           name: AmDital-macOS
           path: |
             dist/*.dmg
-            dist/*.zip 
+            dist/*.zip
