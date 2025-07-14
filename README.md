@@ -1,0 +1,1 @@
+# amdital-mac-desktop-app
